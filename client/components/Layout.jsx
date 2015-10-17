@@ -3,8 +3,7 @@ Layout = React.createClass({
     return (
       <div>
         <MainNav />
-        <div className="container">
-          <header><h1 className="">Hire Inventory App</h1></header>
+        <div className="container">          
           <main>
             {this.props.content}
           </main>
