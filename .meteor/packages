@@ -22,5 +22,6 @@ constellation:console
 constellation:session
 constellation:subscriptions
 constellation:autopublish
-twbs:bootstrap
 static-html
+semantic:ui
+flemay:less-autoprefixer

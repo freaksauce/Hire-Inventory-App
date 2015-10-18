@@ -34,6 +34,7 @@ ejson@1.0.7
 email@1.0.7
 es5-shim@4.1.13
 fastclick@1.0.7
+flemay:less-autoprefixer@1.1.0
 geojson-utils@1.0.4
 gwendall:session-json@0.1.7
 hot-code-push@1.0.0
@@ -75,6 +76,8 @@ reactive-var@1.0.6
 reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6
+semantic:ui@2.1.4_5
+semantic:ui-data@2.1.4_5
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4
@@ -86,7 +89,6 @@ static-html@1.0.2
 templating@1.1.4
 templating-tools@1.0.0
 tracker@1.0.9
-twbs:bootstrap@3.3.5
 ui@1.0.8
 underscore@1.0.4
 url@1.0.5
