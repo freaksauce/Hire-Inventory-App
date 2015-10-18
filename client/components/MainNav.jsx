@@ -2,9 +2,9 @@ MainNav = React.createClass({
 	render() {
 		return (
 			<nav>
-				<div className="ui inverted menu">
+				<div className="ui inverted menu fixed">
 					<a href="/" className="active item">
-						Home
+						Hire Inventory App
 					</a>
 					<a href="/login" className="item">
 						Login
