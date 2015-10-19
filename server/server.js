@@ -1,8 +1,7 @@
 Meteor.startup(function() {
 	console.log("server")
-	console.log(Meteor.users.find().count())
 	if (Meteor.users.find().count() === 0) {
-		Accounts.createUser({
+		var userId = Accounts.createUser({
 			username: "admin",
 			email: "jon@freaksauce.com",
 			password: "password",
@@ -10,7 +9,8 @@ Meteor.startup(function() {
 				first_name: "Jon",
 				last_name: "Bloomer"
 			}
-		})
+		});
+		console.log(userId);
 	}
 
 });
