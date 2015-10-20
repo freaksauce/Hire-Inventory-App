@@ -18,6 +18,7 @@ react
 kadira:flow-router
 kadira:react-layout
 accounts-password
+accounts-base
 constellation:console
 constellation:session
 constellation:subscriptions
@@ -25,4 +26,4 @@ constellation:autopublish
 static-html
 semantic:ui
 flemay:less-autoprefixer
-accounts-base
+digilord:faker

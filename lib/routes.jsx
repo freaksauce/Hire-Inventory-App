@@ -27,7 +27,7 @@ FlowRouter.route("/login", {
   },
   action: function() {
     ReactLayout.render(Layout, {
-      content: <Login />
+      content: <LoginContainer />
     });
   }
 });
