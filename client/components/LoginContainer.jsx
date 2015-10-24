@@ -2,7 +2,8 @@ LoginContainer = React.createClass({
 
   getInitialState() {
     return {
-      errorObj: {}
+      errorObj: {},
+      showError: false
     }
   },
 
@@ -18,11 +19,24 @@ LoginContainer = React.createClass({
   },
 
   errorMessage() {
-    return <Message messageType="negative" messageContent={this.state.errorObj} />
+    console.log(this.state.showError);
+    if (this.state.showError === true) {
+      return <Message messageType="negative" messageContent={this.state.errorObj} hideErrorMessage={this.hideErrorMessage} />    
+    }
+  },
+
+  hideErrorMessage() {
+    console.log('hide error message');
+    this.setState({showError: false});
+  },
+
+  showErrorMessage() {
+    console.log('show error message');
+    this.setState({showError: true});
   },
 
   render() {
-  	return <Login validateEmail={this.validateEmail} errorMessage={this.errorMessage()} />
+  	return <Login validateEmail={this.validateEmail} errorMessage={this.errorMessage()} hideErrorMessage={this.hideErrorMessage} showErrorMessage={this.showErrorMessage} />
   }
 
 });

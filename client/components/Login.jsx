@@ -1,30 +1,21 @@
 Login = React.createClass({
 
-	getInitialState() {
-		return {
-			showLoginError: false
-		}
-	},
-
 	handleSubmit(e) {
 		let emailVal = React.findDOMNode(this.refs.email).value;
 		let passwordVal = React.findDOMNode(this.refs.password).value;
 		if (this.props.validateEmail(emailVal)) {
-			console.log('email valid');
+			console.log('email valid');			
+			this.props.hideErrorMessage();
 		}else{
 			console.log('email invalid');
-			this.setState({showLoginError: true});
+			this.props.showErrorMessage();
 		}
 
 		e.preventDefault();
 	},
 
-	checkErrorState() {
-		console.log('check error state');
-		if (this.state.showLoginError === true) {
-			console.log('error message');
-			return this.props.errorMessage;
-		}
+	renderErrorMessage() {
+		return this.props.errorMessage;		
 	},
 
 	render() {
@@ -48,7 +39,7 @@ Login = React.createClass({
 							</div>
 							<input className="ui fluid large teal submit button" type="submit" value="Login" />
 						</div>					
-						{this.checkErrorState()}
+						{this.renderErrorMessage()}
 					</form>
 				</div>
 			</div>			

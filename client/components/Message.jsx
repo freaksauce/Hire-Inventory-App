@@ -21,12 +21,6 @@ Message = React.createClass({
           _self.props.hideErrorMessage();
       }
     );
-
-    Meteor.setTimeout(function() {
-      $('.message').fadeOut('slow', function() {
-        _self.props.hideErrorMessage();
-      });
-    }, 8000);
   },
 
   render() {
