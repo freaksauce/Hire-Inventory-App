@@ -6,6 +6,20 @@ Login = React.createClass({
 		if (this.props.validateEmail(emailVal)) {
 			console.log('email valid');			
 			this.props.hideErrorMessage();
+
+			Meteor.loginWithPassword(emailVal, passwordVal, (err) => {
+		      if (err) {
+		        // The user might not have been found, or their passwword
+		        // could be incorrect. Inform the user that their
+		        // login attempt has failed.
+		        // console.log(err);
+		        this.props.showLoginError();
+		      }else{
+		        // The user has been logged in.
+		        FlowRouter.go("/dashboard");
+		      }
+		    });
+
 		}else{
 			console.log('email invalid');
 			this.props.showErrorMessage();

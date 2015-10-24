@@ -18,6 +18,11 @@ LoginContainer = React.createClass({
     }
   },
 
+  showLoginError() {
+    this.setState({errorObj: {heading: 'Invalid login', message: 'The user does not exist'}});
+    this.setState({showError: true});
+  },
+
   errorMessage() {
     console.log(this.state.showError);
     if (this.state.showError === true) {
@@ -26,17 +31,15 @@ LoginContainer = React.createClass({
   },
 
   hideErrorMessage() {
-    console.log('hide error message');
     this.setState({showError: false});
   },
 
   showErrorMessage() {
-    console.log('show error message');
     this.setState({showError: true});
   },
 
   render() {
-  	return <Login validateEmail={this.validateEmail} errorMessage={this.errorMessage()} hideErrorMessage={this.hideErrorMessage} showErrorMessage={this.showErrorMessage} />
+  	return <Login validateEmail={this.validateEmail} errorMessage={this.errorMessage()} hideErrorMessage={this.hideErrorMessage} showErrorMessage={this.showErrorMessage} showLoginError={this.showLoginError} />
   }
 
 });
