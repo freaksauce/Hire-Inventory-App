@@ -2,29 +2,23 @@ LoginContainer = React.createClass({
 
   getInitialState() {
     return {
-      errorMessageText: ''
+      errorObj: {}
     }
   },
 
   validateEmail(email) {
-  	console.log('parent validateEmail');
-  	console.log(email);
   	let re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   	let valid = re.test(email);
     if (valid) {
       return true;
     }else{
-      this.setState({errorMessageText: 'Invalid email'});
+      this.setState({errorObj: {heading: 'Error', message: 'Invalid email'}});
       return false;
     }
   },
 
   errorMessage() {
-  	return <div className="ui negative message">
-              <div className="header">
-                {this.state.errorMessageText}
-              </div>
-            </div>;
+    return <Message messageType="negative" messageContent={this.state.errorObj} />
   },
 
   render() {
