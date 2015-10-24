@@ -24,6 +24,7 @@ Meteor.startup(function() {
 		      email: randomEmail,
 		      username: userName,
 		      password: 'password',
+		      inventory: []
 		    }
 		    Customers.insert(userObj);
 		});
