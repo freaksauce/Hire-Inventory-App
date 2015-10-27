@@ -7,7 +7,8 @@ Meteor.startup(function() {
 			password: "password",
 			profile: {
 				first_name: "Jon",
-				last_name: "Bloomer"
+				last_name: "Bloomer",
+				role: "admin"
 			}
 		});
 		console.log(userId);
@@ -29,6 +30,6 @@ Meteor.startup(function() {
 		    Customers.insert(userObj);
 		});
 
-	}
+	}	
 
 });

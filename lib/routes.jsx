@@ -7,20 +7,20 @@ FlowRouter.route("/", {
 	}
 });
 
-// FlowRouter.route("/dashboard", {
-//   subscriptions: function() {
-//     this.register('customers', Meteor.subscribe('customers'));
-//   },
-//   action: function() {
-//     if (Meteor.userId()) {
-//       ReactLayout.render(Layout, {
-//         content: <Dashboard />
-//       });
-//     }else{
-//       FlowRouter.go("/login");
-//     }
-//   }
-// });
+FlowRouter.route("/dashboard", {
+  subscriptions: function() {
+    this.register('customers', Meteor.subscribe('customers'));
+  },
+  action: function() {
+    if (Meteor.userId()) {     
+      ReactLayout.render(Layout, {
+        content: <Dashboard />
+      });
+    }else{
+      FlowRouter.go("/login");
+    }
+  }
+});
 
 FlowRouter.route("/login", {
   subscriptions: function() {
@@ -28,7 +28,7 @@ FlowRouter.route("/login", {
   action: function() {
     ReactLayout.render(Layout, {
       content: <LoginContainer />
-    });
+    });    
   }
 });
 
