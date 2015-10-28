@@ -10,6 +10,7 @@ FlowRouter.route("/", {
 FlowRouter.route("/dashboard", {
   subscriptions: function() {
     this.register('customers', Meteor.subscribe('customers'));
+    this.register('inventory', Meteor.subscribe('inventory'));
   },
   action: function() {
     if (Meteor.userId()) {     
