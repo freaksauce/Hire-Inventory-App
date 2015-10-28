@@ -4,7 +4,6 @@ Login = React.createClass({
 		let emailVal = React.findDOMNode(this.refs.email).value;
 		let passwordVal = React.findDOMNode(this.refs.password).value;
 		if (this.props.validateEmail(emailVal)) {
-			console.log('email valid');			
 			this.props.hideErrorMessage();
 
 			Meteor.loginWithPassword(emailVal, passwordVal, (err) => {
@@ -21,7 +20,6 @@ Login = React.createClass({
 		    });
 
 		}else{
-			console.log('email invalid');
 			this.props.showErrorMessage();
 		}
 

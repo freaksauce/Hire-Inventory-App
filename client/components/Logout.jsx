@@ -1,12 +1,11 @@
 Logout = React.createClass({
 	
-	mixins: [ReactMeteorData],
-	
-	getMeteorData() {
+	componentWillMount() {
 		Meteor.logout(function(err) {
 			if (err) {
+				console.log('--ERROR--');
 				console.log(err);
-			}else{				
+			}else{			
 				FlowRouter.go('/login');
 			}
 		});

@@ -3,7 +3,6 @@ MainNav = React.createClass({
 	
 	getMeteorData() {
 		var data = {
-	      authInProcess: Meteor.loggingIn(),
 	      loggedIn: !!Meteor.user(),
 	    };
 	    return data;

@@ -24,7 +24,6 @@ LoginContainer = React.createClass({
   },
 
   errorMessage() {
-    console.log(this.state.showError);
     if (this.state.showError === true) {
       return <Message messageType="negative" messageContent={this.state.errorObj} hideErrorMessage={this.hideErrorMessage} />    
     }
