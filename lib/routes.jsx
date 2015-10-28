@@ -23,8 +23,6 @@ FlowRouter.route("/dashboard", {
 });
 
 FlowRouter.route("/login", {
-  subscriptions: function() {
-  },
   action: function() {
     ReactLayout.render(Layout, {
       content: <LoginContainer />
@@ -32,9 +30,15 @@ FlowRouter.route("/login", {
   }
 });
 
-FlowRouter.notFound = {
-    subscriptions: function() {
-    },
+FlowRouter.route("/logout", {
+  action: function() {
+    ReactLayout.render(Layout, {
+      content: <Logout />
+    });    
+  }
+});
+
+FlowRouter.notFound = {    
     action: function() {
       ReactLayout.render(Layout, {
         content: <NotFound />
