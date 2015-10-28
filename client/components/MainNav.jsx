@@ -1,4 +1,22 @@
 MainNav = React.createClass({
+	mixins: [ReactMeteorData],
+	
+	getMeteorData() {
+		var data = {
+	      authInProcess: Meteor.loggingIn(),
+	      loggedIn: !!Meteor.user(),
+	    };
+	    return data;
+	},
+
+	showLoginLink() {
+		return <a href="/login" className="item">Login</a>
+	},
+
+	showLogoutLink() {
+		return <a href="/logout" className="item">Logout</a>
+	},
+
 	render() {
 		return (
 			<nav>
@@ -6,9 +24,7 @@ MainNav = React.createClass({
 					<a href="/" className="active item">
 						Hire Inventory App
 					</a>
-					<a href="/login" className="item">
-						Login
-					</a>
+					{this.data.loggedIn? this.showLogoutLink() : this.showLoginLink()}
 				</div>
 			</nav>
 		)
