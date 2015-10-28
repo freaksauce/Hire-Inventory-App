@@ -3,27 +3,35 @@ Dashboard = React.createClass({
 	mixins: [ReactMeteorData],
 	
 	getMeteorData() {
-		return {
-			currentUser: Meteor.user()
-		};
+		var data = {
+	      authInProcess: Meteor.loggingIn(),
+	      userAvailable: !!Meteor.user(),
+	      user: Meteor.user()
+	    };
+
+	    return data;
 	},
 
-	// componentWillUpdate() {		
-	// 	if (FlowRouter.subsReady("customers")) {
-	// 		console.log("customers ready");
-	// 	}
-	// },
-
-	render() {
-		console.log(this.data.currentUser.profile.role)
-		if (this.data.currentUser.profile.role !== 'admin') {
-			console.log('not admin')
-			window.location.replace('/login');
+	redirect() {
+		FlowRouter.go('/login');
+	},
+	
+	checkAuth() {
+		if (this.data.userAvailable) {
+			console.log(this.data.user.profile.role)
+			if (this.data.user.profile.role !== 'admin') {
+				{this.redirect()}				
+			}else{
+				return <DashboardContent />
+			}
 		}
-		
+	},
+
+	render() {		
 		return (
 			<div>
 				<h2>Dashboard</h2>
+				{this.data.authInProcess? <p>Loading...</p> : this.checkAuth()}
 			</div>
 		);
 	}
