@@ -11,17 +11,12 @@ DashboardContent = React.createClass({
 	showInventory() {
 		return this.data.inventory.map((item) => {
 	      console.log(item);
-	      return <div className="ui middle aligned divided list">
+	      return <div className="ui list">
 					<div className="item">
-						<div className="right floated content">
-							<div className="ui button">Add</div>
-						</div>
-						<img className="ui small image" src={item.thumb}/>
+						<img className="ui image" data-lrg={item.image} src={item.thumb}/>
 						<div className="content">
-							<ul>
-								<li>Name: {item.name}</li>
-								<li>In Stock: {item.inStock? <span>Yes</span> : <span>No</span> }</li>
-							</ul>
+							<a className="header">{item.name}</a>
+							<div class="description">In Stock: {item.inStock? <span>Yes</span> : <span>No</span> }</div>
 						</div>
 					</div>
 				</div>
@@ -31,7 +26,7 @@ DashboardContent = React.createClass({
 	render() {
 		return (
 			<div>
-				<h3>Hi</h3>
+				<h3>Inventory list</h3>
 				{this.showInventory()}
 			</div>
 		);
