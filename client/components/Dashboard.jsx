@@ -3,7 +3,7 @@ Dashboard = React.createClass({
 	mixins: [ReactMeteorData],
 	
 	getMeteorData() {
-		var data = {
+		let data = {
 	      authInProcess: Meteor.loggingIn(),
 	      userAvailable: !!Meteor.user(),
 	      user: Meteor.user()

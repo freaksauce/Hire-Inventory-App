@@ -36,11 +36,13 @@ Meteor.startup(function() {
 		_.each(_.range(10), function() {
 			let itemName = faker.commerce.productName();
 			let itemId = faker.random.uuid();
-			let itemImg = faker.image.abstract();			
+			let itemImg = faker.image.abstract();		
+			let itemImgThumb = faker.image.abstract(120,120);
 			let inventoryItem = {
 				id: itemId,
 				name: itemName,
 				image: itemImg,
+				thumb: itemImgThumb,
 				inStock: true,
 				hiredByCustomerId: null
 			}
