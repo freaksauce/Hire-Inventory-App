@@ -1,6 +1,6 @@
 FlowRouter.route("/", {
 	name: "home",
-	action: function() {
+	action() {
 		ReactLayout.render(Layout, {
 			content: <Home />
 		})
@@ -8,11 +8,11 @@ FlowRouter.route("/", {
 });
 
 FlowRouter.route("/dashboard", {
-  subscriptions: function() {
+  subscriptions() {
     this.register('customers', Meteor.subscribe('customers'));
     this.register('inventory', Meteor.subscribe('inventory'));
   },
-  action: function() {
+  action() {
     if (Meteor.userId()) {     
       ReactLayout.render(Layout, {
         content: <Dashboard />
@@ -23,8 +23,23 @@ FlowRouter.route("/dashboard", {
   }
 });
 
+FlowRouter.route("/inventory-item/:itemId", {
+  subscriptions() {
+    this.register('inventory', Meteor.subscribe('inventory'));
+  },
+  action(params) {
+   if (Meteor.userId()) {     
+      ReactLayout.render(Layout, {
+        content: <InventoryItem itemId={params.itemId} />
+      });
+    }else{
+      FlowRouter.go("/login");
+    } 
+  }
+})
+
 FlowRouter.route("/login", {
-  action: function() {
+  action() {
     ReactLayout.render(Layout, {
       content: <LoginContainer />
     });    
@@ -32,7 +47,7 @@ FlowRouter.route("/login", {
 });
 
 FlowRouter.route("/logout", {
-  action: function() {
+  action() {
     ReactLayout.render(Layout, {
       content: <Logout />
     });    
@@ -40,7 +55,7 @@ FlowRouter.route("/logout", {
 });
 
 FlowRouter.notFound = {    
-    action: function() {
+    action() {
       ReactLayout.render(Layout, {
         content: <NotFound />
       });
