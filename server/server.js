@@ -38,12 +38,13 @@ Meteor.startup(function() {
 			let itemId = faker.random.uuid();
 			let itemImg = faker.image.abstract();		
 			let itemImgThumb = faker.image.abstract(120,120);
+			let itemInStock = faker.random.boolean();
 			let inventoryItem = {
 				id: itemId,
 				name: itemName,
 				image: itemImg,
 				thumb: itemImgThumb,
-				inStock: true,
+				inStock: itemInStock,
 				hiredByCustomerId: null
 			}
 			Inventory.insert(inventoryItem);
