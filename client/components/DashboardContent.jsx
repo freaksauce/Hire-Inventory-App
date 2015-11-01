@@ -3,21 +3,25 @@ DashboardContent = React.createClass({
 	mixins: [ReactMeteorData],
 	
 	getMeteorData() {
-		let data = {
-			inventory: this.getInventory()
+		return {
+			inventory: Inventory.find({}).fetch()
 		}
-		console.log(data);
-		return data;
 	},
 
-	getInventory() {
-		let result = Inventory.find({}).fetch();
-		return result;
+	showInventory() {
+		return this.data.inventory.map((item) => {
+	      console.log(item);
+	      return <div>{item.name}</div>
+	      // return <CustomerProfile key={customer._id} userData={customer} />;
+	    });
 	},
 
 	render() {
 		return (
-			<h3>Hi</h3>
+			<div>
+				<h3>Hi</h3>
+				{this.showInventory()}
+			</div>
 		);
 	}
 
