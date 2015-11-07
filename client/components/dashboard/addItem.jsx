@@ -3,28 +3,45 @@ AddItem = React.createClass({
 	getInitialState() {
 		return {
 			showErrorMessage: false,
-			errorObj: {}
+			errorMessages: '',
+			errorObj: {heading: '', message: ''}
 		}
 	},
 
-	addItem(e) {
+	addItem(e) {		
 		let item_id = this.refs.item_id.getDOMNode().value;
+		this.validate({"name": "item_id", "val": item_id});
 		let item_name = this.refs.item_name.getDOMNode().value;
+		this.validate({"name":"item_name", "val": item_name});
 		let item_image = this.refs.item_image.getDOMNode().value;
-		this.validate();
-		console.log(item_id+', '+item_name+', '+item_image);
-		return false;
+		// console.log(item_id+', '+item_name+', '+item_image);
+		e.preventDefault();
 	},
 
 	validate(item) {
-		this.setState({errorObj: {heading: 'Error', message: 'Invalid email'}});
-		this.setState({showErrorMessage: true});
+		let msg = this.state.errorMessages;
+		if (item.name === "item_id" && item.val === '') {
+			msg += 'Item ID is required<br>';
+			this.setState({errorMessages: msg});
+			console.log(this.state.errorMessages);
+			// console.log(msg)
+		}
+		if (item.name === "item_name" && item.val === '') {
+			msg += 'Item name is required<br>';
+			console.log(msg);
+			this.setState({errorMessages: msg});
+			// console.log(msg)
+		}	
+		if (msg !== '') {			
+			this.setState({showErrorMessage: true});
+			this.setState({errorObj: {heading: 'Error', message: msg}});
+		}
 	},
 
 	render() {
 		return  <form className="ui form" onSubmit={this.addItem}>
-					{this.state.showErrorMessage ? <Message messageType="negative" messageContent={this.state.errorObj} hideErrorMessage={this.hideErrorMessage} /> : <p>no error</p>}
 					<h3>Add new item form</h3>
+					{this.state.showErrorMessage ? <Message messageType="negative" messageContent={this.state.errorObj} hideErrorMessage={this.hideErrorMessage} /> : <p>no error</p>}
 					<div className="field">
 						<label>Item ID</label>
 						<input ref="item_id" type="text" name="item-id" placeholder="Item ID"/>
