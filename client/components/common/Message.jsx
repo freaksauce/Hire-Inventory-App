@@ -45,9 +45,7 @@ Message = React.createClass({
         <div className="header">
           {this.props.messageContent.heading}
         </div>
-        <div className="message-body">
-          <div className="ui list">{this.getErrors()}</div>
-        </div>
+        <ul className="list">{this.getErrors()}</ul>
       </div>
     );
   }
@@ -61,7 +59,7 @@ ErrorMessageItem = React.createClass({
 
   render() {
     return (
-        <div className="item">{this.props.msg}</div>
+        <li>{this.props.msg}</li>
       );
   }
 

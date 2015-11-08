@@ -30,7 +30,7 @@ AddItem = React.createClass({
 	render() {
 		return  <form className="ui form" onSubmit={this.addItem}>
 					<h3>Add new item form</h3>
-					{this.state.showErrorMessage ? <Message messageType="negative" messageContent={this.state.errorObj} hideErrorMessage={this.hideErrorMessage} /> : <p>no error</p>}
+					{this.state.showErrorMessage ? <Message messageType="negative" messageContent={this.state.errorObj} hideErrorMessage={this.hideErrorMessage} /> : ''}
 					<div className="field">
 						<label>Item ID</label>
 						<input ref="item_id" type="text" name="item-id" placeholder="Item ID"/>
