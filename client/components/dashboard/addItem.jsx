@@ -3,40 +3,29 @@ AddItem = React.createClass({
 	getInitialState() {
 		return {
 			showErrorMessage: false,
-			errorMessages: '',
+			errors: '',
 			errorObj: {heading: '', message: ''}
 		}
 	},
 
 	addItem(e) {		
-		let item_id = this.refs.item_id.getDOMNode().value;
-		this.validate({"name": "item_id", "val": item_id});
-		let item_name = this.refs.item_name.getDOMNode().value;
-		this.validate({"name":"item_name", "val": item_name});
-		let item_image = this.refs.item_image.getDOMNode().value;
-		// console.log(item_id+', '+item_name+', '+item_image);
-		e.preventDefault();
-	},
+		let fields = [];
+		for (el in this.refs) {
+			fields.push(el);
+		}
 
-	validate(item) {
-		let msg = this.state.errorMessages;
-		if (item.name === "item_id" && item.val === '') {
-			msg += 'Item ID is required<br>';
-			this.setState({errorMessages: msg});
-			console.log(this.state.errorMessages);
-			// console.log(msg)
-		}
-		if (item.name === "item_name" && item.val === '') {
-			msg += 'Item name is required<br>';
-			console.log(msg);
-			this.setState({errorMessages: msg});
-			// console.log(msg)
-		}	
-		if (msg !== '') {			
-			this.setState({showErrorMessage: true});
-			this.setState({errorObj: {heading: 'Error', message: msg}});
-		}
-	},
+		let errors = {};
+	    fields.forEach(function(field) {
+	      let value = this.refs[field].getDOMNode().value;
+	      if (!value) {
+	        errors[field] = "The "+field+" field is required";
+	      }
+	    }.bind(this));
+	    this.setState({errorObj: {heading: 'Add form errors', message: errors}});
+	    this.setState({showErrorMessage: true});
+	    
+		e.preventDefault();
+	},	
 
 	render() {
 		return  <form className="ui form" onSubmit={this.addItem}>
