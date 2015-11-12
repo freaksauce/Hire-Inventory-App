@@ -9,11 +9,13 @@ DashboardContent = React.createClass({
 	},
 
 	showInventory() {
+		return <div className="ui list">{this.iterateItems()}</div>
+	},
+
+	iterateItems() {
 		return this.data.inventory.map((item) => {
-	      return <div className="ui list">
-					<InventoryItem item={item} />
-				</div>
-	    });
+			return <InventoryItem item={item} />
+		});
 	},
 
 	showAddItemForm() {
