@@ -30,7 +30,7 @@ FlowRouter.route("/inventory-item/:itemId", {
   action(params) {
    if (Meteor.userId()) {     
       ReactLayout.render(Layout, {
-        content: <InventoryItem itemId={params.itemId} />
+        content: <InventoryItemView itemId={params.itemId} />
       });
     }else{
       FlowRouter.go("/login");

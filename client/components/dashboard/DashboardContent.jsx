@@ -11,13 +11,7 @@ DashboardContent = React.createClass({
 	showInventory() {
 		return this.data.inventory.map((item) => {
 	      return <div className="ui list">
-					<div className="item">
-						<img className="ui image" data-lrg={item.image} src={item.thumb}/>
-						<div className="content">
-							<a href={"/inventory-item/"+item._id} className="header">{item.name}</a>
-							<div className="description">In Stock: {item.inStock? <a className="ui basic label green">Yes</a> : <a className="ui basic label red">No</a> }</div>
-						</div>
-					</div>
+					<InventoryItem item={item} />
 				</div>
 	    });
 	},
