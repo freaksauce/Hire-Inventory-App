@@ -22,7 +22,7 @@ AddItem = React.createClass({
 	      if (required && !value) {
 	        errors[field] = "The "+field+" field is required";
 	      }else{
-	      	inventoryItemsArr.push({itemName: fields[index], value: value});
+	      	inventoryItemsArr.push({field: fields[index], value: value});
 	      }
 	    }.bind(this));
 	    if (Object.keys(errors).length !== 0) {
@@ -31,9 +31,13 @@ AddItem = React.createClass({
 	    }else{
 	    	// call method to insert into mongo	    	
 	    	console.log(inventoryItemsArr);
-	    	// Meteor.call('addInventoryItem', inventoryItemsArr, function(err) {
-
-	    	// });
+	    	Meteor.call('addInventoryItem', inventoryItemsArr, function(err) {
+	    		if (err) {
+	    			console.log(err);
+	    		}else{
+	    			alert('inserted');
+	    		}
+	    	});
 	    }
 	    
 		e.preventDefault();
