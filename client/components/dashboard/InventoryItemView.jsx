@@ -8,8 +8,13 @@ InventoryItemView = React.createClass({
 	
 	getMeteorData() {
 		return {
-			inventory: Inventory.find({"_id": this.props.itemId}).fetch()
+			item: Inventory.find({"_id": this.props.itemId}).fetch()
 		}
+	},
+
+	showItem() {
+		console.log(this.data.item)
+		return <InventoryItem item={this.data.item[0]} />		
 	},
 
 	render() {
@@ -17,9 +22,7 @@ InventoryItemView = React.createClass({
 			<div>
 				<h3>Inventory Item</h3>
 				<div>
-				{this.data.inventory.id}
-				{this.data.inventory.name}
-				{this.data.inventory.image}
+					{this.showItem()}
 				</div>
 			</div>
 		);

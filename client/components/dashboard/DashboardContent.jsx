@@ -14,7 +14,7 @@ DashboardContent = React.createClass({
 
 	iterateItems() {
 		return this.data.inventory.map((item) => {
-			return <InventoryItem item={item} />
+			return <InventoryItem item={item} key={item._id} />
 		});
 	},
 
