@@ -4,11 +4,14 @@ AddItem = React.createClass({
 		return {
 			showErrorMessage: false,
 			errors: '',
-			errorObj: {heading: '', message: ''}
+			errorObj: {heading: '', message: ''},
+			showInsertSuccess: false
 		}
 	},
 
-	addItem(e) {		
+	addItem(e) {
+		e.preventDefault();
+		console.log('add item')
 		let fields = [];
 		for (el in this.refs) {
 			fields.push(el);
@@ -16,7 +19,7 @@ AddItem = React.createClass({
 		let inventoryItemsArr = [];
 		let errors = {};
 	    fields.forEach(function(field, index) {
-	      let el = this.refs[field].getDOMNode();
+	      let el = this.refs[field];
 	      let value = el.value;
 	      let required = el.required;
 	      if (required && !value) {
@@ -25,28 +28,34 @@ AddItem = React.createClass({
 	      	inventoryItemsArr.push({field: fields[index], value: value});
 	      }
 	    }.bind(this));
+
 	    if (Object.keys(errors).length !== 0) {
-		    this.setState({errorObj: {heading: 'Add form errors', message: errors}});
+	    	this.setState({errorObj: {heading: 'Add form errors', message: errors}});
 		    this.setState({showErrorMessage: true});
 	    }else{
 	    	// call method to insert into mongo	    	
 	    	console.log(inventoryItemsArr);
-	    	Meteor.call('addInventoryItem', inventoryItemsArr, function(err) {
+	    	Meteor.call('addInventoryItem', inventoryItemsArr, (err) => {
 	    		if (err) {
 	    			console.log(err);
 	    		}else{
-	    			alert('inserted');
+	    			this.refs.item_id.value = '';
+	    			this.refs.item_name.value = '';
+	    			this.refs.item_image.value = '';
+	    			this.setState({showInsertSuccess: true});
 	    		}
 	    	});
 	    }
 	    
-		e.preventDefault();
 	},	
 
 	render() {
-		return  <form className="ui form" onSubmit={this.addItem}>
+		return  <form className="ui form" onSubmit={this.addItem} method="post">
 					<h3>Add new item form</h3>
-					{this.state.showErrorMessage ? <Message messageType="negative" messageContent={this.state.errorObj} hideErrorMessage={this.hideErrorMessage} /> : ''}
+					
+					{this.state.showErrorMessage ? <Message messageType="negative" messageContent={this.state.errorObj} /> : ''}
+					{this.state.showInsertSuccess ? <Message messageType="positive" messageContent={{heading:'Success', message: 'Inventory item successfully inserted into DB'}} /> : ''}
+
 					<div className="field">
 						<label>Item ID</label>
 						<input ref="item_id" type="text" name="item-id" placeholder="Item ID" required/>
