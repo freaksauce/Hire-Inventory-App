@@ -51,4 +51,19 @@ Meteor.startup(function() {
 		});
 	}
 
+	// add hire log stubs
+	/*
+		customer: {
+			customer_id,
+			hires: {
+				dateHired: {
+					inventoryItem,
+					returned: false,
+					dateReturned: null
+				}
+			}
+		}
+
+	*/
+
 });
