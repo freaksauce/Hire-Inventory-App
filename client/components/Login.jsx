@@ -1,8 +1,8 @@
 Login = React.createClass({
 
 	handleSubmit(e) {
-		let emailVal = ReactDOM.findDOMNode(this.refs.email).value;
-		let passwordVal = ReactDOM.findDOMNode(this.refs.password).value;
+		let emailVal = this.refs.email.value;
+		let passwordVal = this.refs.password.value;
 		if (this.props.validateEmail(emailVal)) {
 			this.props.hideErrorMessage();
 
