@@ -34,7 +34,22 @@ AddItem = React.createClass({
 		    this.setState({showErrorMessage: true});
 	    }else{
 	    	// call method to insert into mongo	    	
-	    	console.log(inventoryItemsArr);
+	    	console.log('inventoryItemsArr',inventoryItemsArr);
+	    	// upload the image using CollectionFS
+	    	let imgObj = this.refs.item_image.files[0];
+	    	console.log(imgObj);
+	    	Images.insert(imgObj, (err, fileObj) => {
+				// Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+				if (err) {
+					console.log(err);
+				}else{					
+					console.log(fileObj);								    	
+				}
+			});
+
+			let imgFilename = imgObj.name; // get file name
+	    	inventoryItemsArr[2].value = imgFilename; // update inventory obj with filename
+	    	
 	    	Meteor.call('addInventoryItem', inventoryItemsArr, (err) => {
 	    		if (err) {
 	    			console.log(err);

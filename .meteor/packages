@@ -31,3 +31,4 @@ check
 aldeed:collection2
 cfs:standard-packages
 cfs:dropbox
+cfs:filesystem

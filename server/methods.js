@@ -17,7 +17,7 @@ Meteor.methods({
 			} 
 			if (item.field === 'item_image') {
 				if (item.value !== '') {
-					inventoryItemObj.image = item.value;
+					inventoryItemObj.image = item.value;			
 				}
 			}
 		});
