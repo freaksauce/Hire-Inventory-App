@@ -35,7 +35,7 @@ FlowRouter.route("/inventory-item/:itemId", {
   action(params) {
    if (Meteor.userId()) {     
       ReactLayout.render(Layout, {
-        content: <InventoryItemView itemId={params.itemId} />
+        content: <InventoryItemEdit itemId={params.itemId} />
       });
     } 
   }
