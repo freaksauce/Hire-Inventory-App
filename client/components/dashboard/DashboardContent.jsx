@@ -9,7 +9,7 @@ DashboardContent = React.createClass({
 	},
 
 	showInventory() {
-		return <div className="ui list">{this.iterateItems()}</div>
+		return <div className="ui middle aligned divided list">{this.iterateItems()}</div>
 	},
 
 	iterateItems() {
