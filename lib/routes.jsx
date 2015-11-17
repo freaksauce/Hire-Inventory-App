@@ -1,3 +1,9 @@
+FlowRouter.triggers.enter([function(context, redirect) {
+  if (!Meteor.userId()) {
+    FlowRouter.go('home');
+  }
+}], { except: ["login"] });
+
 FlowRouter.route("/", {
 	name: "home",
 	action() {
@@ -12,13 +18,12 @@ FlowRouter.route("/dashboard", {
     this.register('customers', Meteor.subscribe('customers'));
     this.register('inventory', Meteor.subscribe('inventory'));
   },
+  name: "dashboard",
   action() {
     if (Meteor.userId()) {     
       ReactLayout.render(Layout, {
         content: <Dashboard />
       });
-    }else{
-      FlowRouter.go("/login");
     }
   }
 });
@@ -32,13 +37,12 @@ FlowRouter.route("/inventory-item/:itemId", {
       ReactLayout.render(Layout, {
         content: <InventoryItemView itemId={params.itemId} />
       });
-    }else{
-      FlowRouter.go("/login");
     } 
   }
 })
 
 FlowRouter.route("/login", {
+  name: "login",
   action() {
     ReactLayout.render(Layout, {
       content: <LoginContainer />
@@ -47,6 +51,7 @@ FlowRouter.route("/login", {
 });
 
 FlowRouter.route("/logout", {
+  name: "logout",
   action() {
     ReactLayout.render(Layout, {
       content: <Logout />
@@ -54,7 +59,8 @@ FlowRouter.route("/logout", {
   }
 });
 
-FlowRouter.notFound = {    
+FlowRouter.notFound = { 
+    name: "notfound",
     action() {
       ReactLayout.render(Layout, {
         content: <NotFound />
