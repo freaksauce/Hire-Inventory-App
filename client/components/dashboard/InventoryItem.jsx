@@ -7,9 +7,6 @@ InventoryItem = React.createClass({
 			if (error) {
 				console.log(error);
 			}
-			if (result) {
-				console.log(result);
-			}
 		});
 		event.preventDefault();
 	},
