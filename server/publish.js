@@ -1,7 +1,7 @@
 Meteor.publish("customers", function () {
-  return Customers.find();
+  return CustomersCollection.find();
 });
 
 Meteor.publish("inventory", function () {
-  return Inventory.find();
+  return InventoryCollection.find();
 });

@@ -15,7 +15,7 @@ Meteor.startup(function() {
 	}
 
 	// add fake customers
-	if (Customers.find().count() === 0) {
+	if (CustomersCollection.find().count() === 0) {
 		_.each(_.range(25), function() {
 		    let randomEmail = faker.internet.email();
 		    let randomName = faker.name.findName();
@@ -27,12 +27,12 @@ Meteor.startup(function() {
 		      password: 'password',
 		      inventory: []
 		    }
-		    Customers.insert(userObj);
+		    CustomersCollection.insert(userObj);
 		});
 	}	
 
 	// add inventory stubs
-	if (Inventory.find().count() === 0) {
+	if (InventoryCollection.find().count() === 0) {
 		_.each(_.range(10), function() {
 			let itemName = faker.commerce.productName();
 			let itemId = faker.random.uuid();
@@ -47,7 +47,7 @@ Meteor.startup(function() {
 				inStock: itemInStock,
 				hiredByCustomerId: null
 			}
-			Inventory.insert(inventoryItem);
+			InventoryCollection.insert(inventoryItem);
 		});
 	}
 

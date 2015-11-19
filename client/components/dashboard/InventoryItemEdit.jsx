@@ -11,13 +11,7 @@ InventoryItemEdit = React.createClass({
 
 		return {
 			inventoryLoading: ! handle.ready(), // Use handle to show loading state
-			inventory: Inventory.find({"_id": this.props.itemId}).fetch()
-		}
-	},
-
-	getInitialState() {
-		return {
-			inventoryLoaded: false
+			inventory: InventoryCollection.find({"_id": this.props.itemId}).fetch()
 		}
 	},
 

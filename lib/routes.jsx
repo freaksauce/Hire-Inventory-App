@@ -28,6 +28,34 @@ FlowRouter.route("/dashboard", {
   }
 });
 
+FlowRouter.route("/customers", {
+  subscriptions() {
+    this.register('customers', Meteor.subscribe('customers'));
+  },
+  name: "customers",
+  action() {
+    if (Meteor.userId()) {
+      ReactLayout.render(Layout, {
+        content: <Customers />
+      })
+    }
+  }
+});
+
+FlowRouter.route("/inventory", {
+  subscriptions() {
+    this.register('inventory', Meteor.subscribe('inventory'));
+  },
+  name: "inventory",
+  action() {
+    if (Meteor.userId()) {
+      ReactLayout.render(Layout, {
+        content: <Inventory />
+      })
+    }
+  }
+});
+
 FlowRouter.route("/inventory-item/:itemId", {
   subscriptions() {
     this.register('inventory', Meteor.subscribe('inventory'));

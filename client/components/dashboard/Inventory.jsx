@@ -1,10 +1,10 @@
-DashboardContent = React.createClass({
+Inventory = React.createClass({
 	
 	mixins: [ReactMeteorData],
 	
 	getMeteorData() {
 		return {
-			inventory: Inventory.find({}).fetch()
+			inventory: InventoryCollection.find({}).fetch()
 		}
 	},
 

@@ -12,8 +12,14 @@ MainNav = React.createClass({
 		return <a href="/login" className="item">Login</a>
 	},
 
-	showLogoutLink() {
-		return <a href="/logout" className="item">Logout</a>
+	showLoggedInMenu() {
+		return (
+			<span className="flex">
+			<a href="/logout" className="item">Logout</a>
+			<a href="/inventory" className="item">Inventory</a>
+			<a href="/customers" className="item">Customers</a>
+			</span>
+			);
 	},
 
 	render() {
@@ -23,7 +29,7 @@ MainNav = React.createClass({
 					<a href="/" className="active item">
 						Hire Inventory App
 					</a>
-					{this.data.loggedIn? this.showLogoutLink() : this.showLoginLink()}
+					{this.data.loggedIn? this.showLoggedInMenu() : this.showLoginLink()}
 				</div>
 			</nav>
 		)

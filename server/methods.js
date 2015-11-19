@@ -23,12 +23,12 @@ Meteor.methods({
 		});
 		inventoryItemObj.inStock = true;
 		inventoryItemObj.hiredByCustomerId = null;
-		Inventory.insert(inventoryItemObj);
+		InventoryCollection.insert(inventoryItemObj);
 	},
 
 	deleteInventoryItem(itemId) {
 		if (itemId) {
-			Inventory.remove(itemId);
+			InventoryCollection.remove(itemId);
 			// remove the item from any customers 
 		}
 	}

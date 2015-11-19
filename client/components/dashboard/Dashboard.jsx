@@ -22,7 +22,7 @@ Dashboard = React.createClass({
 			if (this.data.user.profile.role !== 'admin') {
 				{this.redirect()}				
 			}else{
-				return <DashboardContent ref="inner" addItem={this.addItem} />
+				return <Inventory ref="inner" addItem={this.addItem} />
 			}
 		}
 	},
