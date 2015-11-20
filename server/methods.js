@@ -31,6 +31,31 @@ Meteor.methods({
 			InventoryCollection.remove(itemId);
 			// remove the item from any customers 
 		}
+	},
+
+	addCustomer(customer) {
+		let customerObj = {};
+		customer.forEach(function(item, index) {
+			console.log(item.field);
+			console.log(item.value);
+			if (item.field === 'ref_customer_name') {
+				if (item.value !== '') {
+					customerObj.name = item.value;
+				}
+			}
+			if (item.field === 'ref_customer_email') {
+				if (item.value !== '') {
+					customerObj.email = item.value;
+				}
+			}
+		});
+		CustomersCollection.insert(customerObj);
+	},
+
+	deleteCustomer(customerId) {
+		if (customerId) {
+			CustomersCollection.remove(customerId);
+		}
 	}
 
 });

@@ -19,12 +19,10 @@ Meteor.startup(function() {
 		_.each(_.range(25), function() {
 		    let randomEmail = faker.internet.email();
 		    let randomName = faker.name.findName();
-		    let userName = faker.internet.userName();
 		    let userObj = {
 		      name: randomName,
 		      email: randomEmail,
 		      username: userName,
-		      password: 'password',
 		      inventory: []
 		    }
 		    CustomersCollection.insert(userObj);

@@ -21,14 +21,24 @@ Customers = React.createClass({
 		});
 	},
 
+	showAddCustomerForm() {
+		return  <AddCustomer />
+	},
+
 	render() {
 		if (this.data.customersLoading) {
 	      return <p>Loading...</p>;
 	    }
 
 		return (
-			<div>
-				{this.showData()}				
+			<div className="ui grid">
+				<div className="eight wide column">
+					<h3>Customer list</h3>
+					{this.showData()}
+				</div>
+				<div className="eight wide column">
+					{this.showAddCustomerForm()}
+				</div>
 			</div>
 		);
 	}
