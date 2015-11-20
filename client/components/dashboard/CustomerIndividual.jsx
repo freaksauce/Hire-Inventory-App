@@ -15,6 +15,13 @@ CustomerIndividual = React.createClass({
 		event.preventDefault();
 	},
 
+	handleEdit(event) {
+		console.log('handle edit');
+		let customerId = event.currentTarget.id;
+		let url = "/customer/"+this.props.customerId;
+		//redirect
+	},
+
 	render() {
 		return <div className="item">
 					<div className="right floated content"><button id={this.props.individual._id} className="ui red button item-delete" onClick={this.handleDelete}>Delete</button></div>

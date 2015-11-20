@@ -14,7 +14,7 @@ InventoryItem = React.createClass({
 	render() {
 		return (
 			<div className="item">
-			<div className="right floated content"><button id={this.props.item._id} className="ui red button item-delete" onClick={this.handleDelete}>Delete</button></div>
+				<div className="right floated content"><button id={this.props.item._id} className="ui red button item-delete" onClick={this.handleDelete}>Delete</button></div>
 				<img className="ui image" data-lrg={this.props.item.image} src={this.props.item.thumb}/>
 				<div className="content">
 					<a href={"/inventory-item/"+this.props.item._id} className="header">{this.props.item.name}</a>

@@ -42,6 +42,20 @@ FlowRouter.route("/customers", {
   }
 });
 
+FlowRouter.route("/customer/:customerId", {
+  subscriptions() {
+    this.register('customer', Meteor.subscribe('customer'));
+  },
+  name: "customer",
+  action() {
+    if (Meteor.userId()) {
+      ReactLayout.render(Layout, {
+        content: <Customer />
+      })
+    }
+  }
+});
+
 FlowRouter.route("/inventory", {
   subscriptions() {
     this.register('inventory', Meteor.subscribe('inventory'));
