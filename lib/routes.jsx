@@ -43,8 +43,8 @@ FlowRouter.route("/customers", {
 });
 
 FlowRouter.route("/customer/:customerId", {
-  subscriptions() {
-    this.register('customer', Meteor.subscribe('customer'));
+  subscriptions(params, queryParams) {
+    this.register('customer', Meteor.subscribe('customer', params.id));
   },
   name: "customer",
   action() {
@@ -71,8 +71,8 @@ FlowRouter.route("/inventory", {
 });
 
 FlowRouter.route("/inventory-item/:itemId", {
-  subscriptions() {
-    this.register('inventory', Meteor.subscribe('inventory'));
+  subscriptions(params, queryParams) {
+    this.register('inventory_item', Meteor.subscribe('inventory_item', params.id));
   },
   action(params) {
    if (Meteor.userId()) {     
