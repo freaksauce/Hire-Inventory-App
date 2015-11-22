@@ -18,8 +18,8 @@ CustomerIndividual = React.createClass({
 	handleEdit(event) {
 		console.log('handle edit');
 		let customerId = event.currentTarget.id;
-		let url = "/customer/"+this.props.customerId;
-		//redirect
+		let url = "/customer/"+customerId;
+		FlowRouter.go(url);
 	},
 
 	render() {
