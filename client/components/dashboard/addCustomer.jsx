@@ -44,6 +44,8 @@ AddCustomer = React.createClass({
 	    		}else{
 	    			this.refs.ref_customer_name.value = '';
 	    			this.refs.ref_customer_email.value = '';
+	    			this.refs.ref_customer_address.value = '';
+	    			this.refs.ref_customer_phone.value = '';
 	    			this.setState({showInsertSuccess: true});
 	    		}
 	    	});
@@ -65,6 +67,14 @@ AddCustomer = React.createClass({
 					<div className="field">
 						<label>Customer Email</label>
 						<input ref="ref_customer_email" type="text" name="customer-email" required/>
+					</div>
+					<div className="field">
+						<label>Customer Address</label>
+						<textarea ref="ref_customer_address" name="customer-address"></textarea>
+					</div>
+					<div className="field">
+						<label>Customer Phone number</label>
+						<input ref="ref_customer_phone" type="text" name="customer-phone"/>
 					</div>
 					
 					<button className="ui button" type="submit">Add</button>

@@ -48,6 +48,16 @@ Meteor.methods({
 					customerObj.email = item.value;
 				}
 			}
+			if (item.field === 'ref_customer_address') {
+				if (item.value !== '') {
+					customerObj.address = item.value;
+				}
+			}
+			if (item.field === 'ref_customer_phone') {
+				if (item.value !== '') {
+					customerObj.phone = item.value;
+				}
+			}
 		});
 		CustomersCollection.insert(customerObj);
 	},
