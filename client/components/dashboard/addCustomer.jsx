@@ -38,7 +38,9 @@ AddCustomer = React.createClass({
 	    	
 	    	Meteor.call('addCustomer', customersArr, (err) => {
 	    		if (err) {
-	    			console.log(err);
+	    			// console.log(err);
+	    			this.setState({errorObj: {heading: 'Add form errors', message: err.message}});
+		    this.setState({showErrorMessage: true});
 	    		}else{
 	    			this.refs.ref_customer_name.value = '';
 	    			this.refs.ref_customer_email.value = '';
@@ -54,7 +56,7 @@ AddCustomer = React.createClass({
 					<h3>Add new item form</h3>
 					
 					{this.state.showErrorMessage ? <Message messageType="negative" messageContent={this.state.errorObj} /> : ''}
-					{this.state.showInsertSuccess ? <Message messageType="positive" messageContent={{heading:'Success', message: 'Inventory item successfully inserted into DB'}} /> : ''}
+					{this.state.showInsertSuccess ? <Message messageType="positive" messageContent={{heading:'Success', message: 'Customer successfully inserted into DB'}} /> : ''}
 
 					<div className="field">
 						<label>Customer Name</label>
