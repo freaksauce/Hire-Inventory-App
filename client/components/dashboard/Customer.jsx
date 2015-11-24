@@ -1,6 +1,6 @@
 Customer = React.createClass({
 
-	mixins: [ReactMeteorData],
+	mixins: [ReactMeteorData, ValidateCustomerMixin],
 	
 	getMeteorData() {
 		let customerId = FlowRouter.current().params.customerId;
@@ -22,25 +22,25 @@ Customer = React.createClass({
 
 	updateCustomer(e) {
 		console.log('update customer');
-
+		this.validateCustomer(this.refs);
 		// ---------------------------
 		// should use same code as AddCustomer to check field validity
 		// FIND A WAY TO ABSTRACT THAT METHOD INTO A GENERAL HELPER FUNCTION
 		// ----------------------------
 
-		Meteor.call('updateCustomer', customersArr, (err) => {
-	    	if (err) {
-    			// console.log(err);
-    			this.setState({errorObj: {heading: 'Add form errors', message: err.message}});
-		    	this.setState({showErrorMessage: true});
-	    	}else{
-    			this.refs.ref_customer_name.value = '';
-    			this.refs.ref_customer_email.value = '';
-    			this.refs.ref_customer_address.value = '';
-    			this.refs.ref_customer_phone.value = '';
-    			this.setState({showUpdateSuccess: true});
-    		}
-	    });
+		// Meteor.call('updateCustomer', customersArr, (err) => {
+	 //    	if (err) {
+  //   			// console.log(err);
+  //   			this.setState({errorObj: {heading: 'Add form errors', message: err.message}});
+		//     	this.setState({showErrorMessage: true});
+	 //    	}else{
+  //   			this.refs.ref_customer_name.value = '';
+  //   			this.refs.ref_customer_email.value = '';
+  //   			this.refs.ref_customer_address.value = '';
+  //   			this.refs.ref_customer_phone.value = '';
+  //   			this.setState({showUpdateSuccess: true});
+  //   		}
+	 //    });
 
 		e.preventDefault();
 	},

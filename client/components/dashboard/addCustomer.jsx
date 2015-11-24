@@ -1,5 +1,7 @@
 AddCustomer = React.createClass({
 	
+	mixins: [ValidateCustomerMixin],
+
 	getInitialState() {
 		return {
 			showErrorMessage: false,
