@@ -33,11 +33,11 @@ Meteor.methods({
 		}
 	},
 
-	addCustomer(customer) {
+	buildCustomerObj(customer) {
 		let customerObj = {};
 		customer.forEach(function(item, index) {
-			console.log(item.field);
-			console.log(item.value);
+			// console.log(item.field);
+			// console.log(item.value);
 			if (item.field === 'ref_customer_name') {
 				if (item.value !== '') {
 					customerObj.name = item.value;
@@ -59,13 +59,22 @@ Meteor.methods({
 				}
 			}
 		});
-		CustomersCollection.insert(customerObj);
+		return customerObj;
+	},
+
+	addCustomer(customer) {
+		let returnCustomerObj = this.buildCustomerObj(customer);
+		CustomersCollection.insert(returnCustomerObj);
 	},
 
 	updateCustomer(customer) {
-		//
+		console.log(customer[1].value); // email to use in WHERE
 
-		//CustomersCollection.update(customerObj);
+		// let returnCustomerObj = this.buildCustomerObj(customer);
+		// console.log(returnCustomerObj);
+
+		// update customer WHERE email = this.email
+		// CustomersCollection.update(customerObj);
 	},
 
 	deleteCustomer(customerId) {

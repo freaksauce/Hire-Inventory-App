@@ -47,7 +47,7 @@ Customer = React.createClass({
 	},
 
 	renderForm() {
-		console.log(this.data)
+		// console.log(this.data)
 		return (
 			<div className="ui grid">
 				<div className="ten wide column">
