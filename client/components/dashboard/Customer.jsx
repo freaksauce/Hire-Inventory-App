@@ -22,25 +22,26 @@ Customer = React.createClass({
 
 	updateCustomer(e) {
 		console.log('update customer');
-		this.validateCustomer(this.refs);
-		// ---------------------------
-		// should use same code as AddCustomer to check field validity
-		// FIND A WAY TO ABSTRACT THAT METHOD INTO A GENERAL HELPER FUNCTION
-		// ----------------------------
-
-		// Meteor.call('updateCustomer', customersArr, (err) => {
-	 //    	if (err) {
-  //   			// console.log(err);
-  //   			this.setState({errorObj: {heading: 'Add form errors', message: err.message}});
-		//     	this.setState({showErrorMessage: true});
-	 //    	}else{
-  //   			this.refs.ref_customer_name.value = '';
-  //   			this.refs.ref_customer_email.value = '';
-  //   			this.refs.ref_customer_address.value = '';
-  //   			this.refs.ref_customer_phone.value = '';
-  //   			this.setState({showUpdateSuccess: true});
-  //   		}
-	 //    });
+		const returnCustomerObj = this.validateCustomer(this.refs);
+		if (returnCustomerObj.errors) {
+			this.setState({errorObj: {heading: 'Update form errors', message: this.errors}});
+		    this.setState({showErrorMessage: true});
+		}else{
+			console.log('customersArr',returnCustomerObj);
+			Meteor.call('updateCustomer', returnCustomerObj, (err) => {
+	    		if (err) {
+	    			// console.log(err);
+	    			this.setState({errorObj: {heading: 'Add form errors', message: err.message}});
+		    		this.setState({showErrorMessage: true});
+	    		}else{
+	    			this.refs.ref_customer_name.value = '';
+	    			this.refs.ref_customer_email.value = '';
+	    			this.refs.ref_customer_address.value = '';
+	    			this.refs.ref_customer_phone.value = '';
+	    			this.setState({showInsertSuccess: true});
+	    		}
+	    	});
+		}
 
 		e.preventDefault();
 	},
@@ -49,7 +50,11 @@ Customer = React.createClass({
 		console.log(this.data)
 		return (
 			<div className="ui grid">
-				<div className="eight wide column">
+				<div className="ten wide column">
+					
+					{this.state.showErrorMessage ? <Message messageType="negative" messageContent={this.state.errorObj} /> : ''}
+					{this.state.showInsertSuccess ? <Message messageType="positive" messageContent={{heading:'Success', message: 'Customer successfully inserted into DB'}} /> : ''}
+					
 					<form className="ui form" method="post" onSubmit={this.updateCustomer}>
 						<div className="field">
 							<label>Name: </label>
@@ -81,7 +86,7 @@ Customer = React.createClass({
 	    }
 		return (
 			<div>
-				<h3>Customer</h3>
+				<h3>Update Customer details</h3>
 				{this.renderForm()}
 			</div>
 		);
