@@ -2,8 +2,8 @@ Meteor.publish("customers", function () {
   return CustomersCollection.find();
 });
 
-Meteor.publish("customer", function (_id) {
-  return CustomersCollection.find({_id: _id});
+Meteor.publish("customer", function (customerId) {
+  return CustomersCollection.find({_id: customerId});
 });
 
 Meteor.publish("inventory", function () {

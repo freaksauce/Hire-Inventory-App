@@ -62,6 +62,12 @@ Meteor.methods({
 		CustomersCollection.insert(customerObj);
 	},
 
+	updateCustomer(customer) {
+		//
+
+		//CustomersCollection.update(customerObj);
+	},
+
 	deleteCustomer(customerId) {
 		if (customerId) {
 			CustomersCollection.remove(customerId);

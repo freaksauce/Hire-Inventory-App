@@ -44,7 +44,7 @@ FlowRouter.route("/customers", {
 
 FlowRouter.route("/customer/:customerId", {
   subscriptions(params, queryParams) {
-    this.register('customer', Meteor.subscribe('customer', params.id));
+    this.register('customer', Meteor.subscribe('customer', params.customerId));
   },
   name: "customer",
   action() {
