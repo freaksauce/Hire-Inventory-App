@@ -3,7 +3,7 @@ Customer = React.createClass({
 	mixins: [ReactMeteorData, ValidateCustomerMixin],
 	
 	getMeteorData() {
-		let customerId = FlowRouter.current().params.customerId;
+		let customerId = FlowRouter.current().params.customerId;		
 		let handle = Meteor.subscribe("customer", customerId);
 		return {
 			cutomerLoading: ! handle.ready(), // Use handle to show loading state
@@ -21,23 +21,20 @@ Customer = React.createClass({
 	},
 
 	updateCustomer(e) {
-		console.log('update customer');
+		let customerId = FlowRouter.current().params.customerId;
+		console.log('update customer: '+customerId);
 		const returnCustomerObj = this.validateCustomer(this.refs);
+		returnCustomerObj.customerId = customerId;
 		if (returnCustomerObj.errors) {
 			this.setState({errorObj: {heading: 'Update form errors', message: this.errors}});
 		    this.setState({showErrorMessage: true});
 		}else{
-			console.log('customersArr',returnCustomerObj);
 			Meteor.call('updateCustomer', returnCustomerObj, (err) => {
 	    		if (err) {
 	    			// console.log(err);
 	    			this.setState({errorObj: {heading: 'Add form errors', message: err.message}});
 		    		this.setState({showErrorMessage: true});
 	    		}else{
-	    			this.refs.ref_customer_name.value = '';
-	    			this.refs.ref_customer_email.value = '';
-	    			this.refs.ref_customer_address.value = '';
-	    			this.refs.ref_customer_phone.value = '';
 	    			this.setState({showInsertSuccess: true});
 	    		}
 	    	});

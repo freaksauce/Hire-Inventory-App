@@ -11,6 +11,11 @@ AddCustomer = React.createClass({
 		}
 	},
 
+	componentWillMount() {
+		// find correct syntax to disable html5 field validation
+		// $('form').setAttribute('novalidate', true);
+	},
+
 	addCustomer(e) {
 		e.preventDefault();
 		console.log('add customer');

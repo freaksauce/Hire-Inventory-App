@@ -68,13 +68,23 @@ Meteor.methods({
 	},
 
 	updateCustomer(customer) {
-		console.log(customer[1].value); // email to use in WHERE
+		console.log('updateCustomer method');
+		console.log(customer.customerId);
+		Meteor.call('buildCustomerObj', customer, (err, result) => {
+			if (err) {
+				console.log(err);
+			}else{				
+				console.log(result);
+				// update customer WHERE email = this.email
+				// CustomersCollection.update({_id: customer.id}, 
+				// 	{
+				// 		$set: {
 
-		// let returnCustomerObj = this.buildCustomerObj(customer);
-		// console.log(returnCustomerObj);
+				// 		} 
+				// 	});	
+			}
+		});
 
-		// update customer WHERE email = this.email
-		// CustomersCollection.update(customerObj);
 	},
 
 	deleteCustomer(customerId) {
