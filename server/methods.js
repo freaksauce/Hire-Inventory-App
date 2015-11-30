@@ -36,8 +36,6 @@ Meteor.methods({
 	buildCustomerObj(customer) {
 		let customerObj = {};
 		customer.forEach(function(item, index) {
-			// console.log(item.field);
-			// console.log(item.value);
 			if (item.field === 'ref_customer_name') {
 				if (item.value !== '') {
 					customerObj.name = item.value;
@@ -58,6 +56,11 @@ Meteor.methods({
 					customerObj.phone = item.value;
 				}
 			}
+			if (item.field === 'customerId') {
+				if (item.value !== '') {
+					customerObj.id = item.value;
+				}
+			}
 		});
 		return customerObj;
 	},
@@ -69,7 +72,7 @@ Meteor.methods({
 
 	updateCustomer(customer) {
 		console.log('updateCustomer method');
-		console.log(customer.customerId);
+		// console.log(customer);
 		Meteor.call('buildCustomerObj', customer, (err, result) => {
 			if (err) {
 				console.log(err);
@@ -79,7 +82,6 @@ Meteor.methods({
 				// CustomersCollection.update({_id: customer.id}, 
 				// 	{
 				// 		$set: {
-
 				// 		} 
 				// 	});	
 			}

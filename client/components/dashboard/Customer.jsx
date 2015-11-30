@@ -23,8 +23,8 @@ Customer = React.createClass({
 	updateCustomer(e) {
 		let customerId = FlowRouter.current().params.customerId;
 		console.log('update customer: '+customerId);
-		const returnCustomerObj = this.validateCustomer(this.refs);
-		returnCustomerObj.customerId = customerId;
+		const returnCustomerObj = this.validateCustomer(this.refs, customerId);
+		console.log(returnCustomerObj)
 		if (returnCustomerObj.errors) {
 			this.setState({errorObj: {heading: 'Update form errors', message: this.errors}});
 		    this.setState({showErrorMessage: true});
