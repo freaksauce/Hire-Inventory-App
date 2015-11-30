@@ -20,7 +20,7 @@ InventoryItemEdit = React.createClass({
 		return <div className="itemData">
 					<div className="field"><label>ID:</label><input name="item_id" defaultValue={this.data.inventory[0].id} /></div>
 					<div className="field"><label>Name:</label><input name="item_name" defaultValue={this.data.inventory[0].name} /></div>
-					<div className="field"><label>Image:</label><img src={this.data.inventory[0].image} /></div>
+					<div className="field"><label>Image:</label><img className="ui fluid image" src={this.data.inventory[0].image} /></div>
 					<button className="ui primary button" type="submit">Update Item</button>
 				</div>
 	},
@@ -31,11 +31,13 @@ InventoryItemEdit = React.createClass({
 	    }
 
 		return (
-			<div>
-				<h3>Inventory Item</h3>
-				<form className="ui form">		
-					{this.showData()}
-				</form>
+			<div className="ui grid">
+				<div className="ten wide column">
+					<h3>Inventory Item</h3>
+					<form className="ui form">		
+						{this.showData()}
+					</form>
+				</div>
 			</div>
 		);
 	}
