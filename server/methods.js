@@ -78,12 +78,15 @@ Meteor.methods({
 				console.log(err);
 			}else{				
 				console.log(result);
-				// update customer WHERE email = this.email
-				// CustomersCollection.update({_id: customer.id}, 
-				// 	{
-				// 		$set: {
-				// 		} 
-				// 	});	
+				CustomersCollection.update({_id: result.id}, 
+					{
+						$set: {
+							name: result.name,
+							email: result.email,
+							phone: result.phone,
+							address: result.address
+						} 
+					});	
 			}
 		});
 
