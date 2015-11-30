@@ -77,7 +77,7 @@ Meteor.methods({
 			if (err) {
 				console.log(err);
 			}else{				
-				console.log(result);
+				// console.log(result);
 				CustomersCollection.update({_id: result.id}, 
 					{
 						$set: {
