@@ -26,11 +26,66 @@ Meteor.methods({
 		InventoryCollection.insert(inventoryItemObj);
 	},
 
+	updateInventoryItem(item) {
+		console.log(item, "update inventory item");
+
+		Meteor.call('buildInventoryObj', item, (err, result) => {
+			if (err) {
+				console.log(err);
+			}else{				
+				console.log(result);
+				InventoryCollection.update({_id: result._id}, 
+					{
+						$set: {
+							id: result.id,
+							name: result.name,
+							image: result.image,
+							thumb: result.thumb,
+							inStock: result.inStock
+						} 
+					});	
+			}
+		});
+	},
+
 	deleteInventoryItem(itemId) {
 		if (itemId) {
 			InventoryCollection.remove(itemId);
 			// remove the item from any customers 
 		}
+	},
+
+	buildInventoryObj(item) {
+		console.log(item)
+		let itemObj = {};
+		item.forEach(function(item, index) {
+			if (item.field === 'ref_item_id') {
+				if (item.value !== '') {
+					itemObj.id = item.value;
+				}
+			}
+			if (item.field === 'ref_item_name') {
+				if (item.value !== '') {
+					itemObj.name = item.value;
+				}
+			}
+			if (item.field === 'ref_item_image') {
+				if (item.value !== '') {
+					itemObj.image = item.value;
+				}
+			}
+			if (item.field === 'ref_item_instock') {
+				if (item.value !== '') {
+					itemObj.inStock = item.value;
+				}
+			}
+			if (item.field === '_id') {
+				if (item.value !== '') {
+					customerObj._id = item.value;
+				}
+			}
+		});
+		return itemObj;
 	},
 
 	buildCustomerObj(customer) {
@@ -56,9 +111,9 @@ Meteor.methods({
 					customerObj.phone = item.value;
 				}
 			}
-			if (item.field === 'id') {
+			if (item.field === '_id') {
 				if (item.value !== '') {
-					customerObj.id = item.value;
+					customerObj._id = item.value;
 				}
 			}
 		});
@@ -84,7 +139,7 @@ Meteor.methods({
 				console.log(err);
 			}else{				
 				console.log(result);
-				CustomersCollection.update({_id: result.id}, 
+				CustomersCollection.update({_id: result._id}, 
 					{
 						$set: {
 							name: result.name,
