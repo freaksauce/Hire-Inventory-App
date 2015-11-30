@@ -25,6 +25,14 @@ InventoryItemEdit = React.createClass({
 				</div>
 	},
 
+	updateItem(e) {
+		let itemId = FlowRouter.current().params.itemId;
+		
+		const returnItemObj = this.validateItem(this.refs, itemId);
+		console.log(returnItemObj);
+		e.preventDefault();
+	},
+
 	render() {
 		if (this.data.inventoryLoading) {
 	      return <p>Loading...</p>;
@@ -34,7 +42,7 @@ InventoryItemEdit = React.createClass({
 			<div className="ui grid">
 				<div className="ten wide column">
 					<h3>Inventory Item</h3>
-					<form className="ui form">		
+					<form className="ui form" method="post" onSubmit={this.updateItem}>
 						{this.showData()}
 					</form>
 				</div>

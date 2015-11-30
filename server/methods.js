@@ -56,7 +56,7 @@ Meteor.methods({
 					customerObj.phone = item.value;
 				}
 			}
-			if (item.field === 'customerId') {
+			if (item.field === 'id') {
 				if (item.value !== '') {
 					customerObj.id = item.value;
 				}
@@ -66,8 +66,14 @@ Meteor.methods({
 	},
 
 	addCustomer(customer) {
-		let returnCustomerObj = this.buildCustomerObj(customer);
-		CustomersCollection.insert(returnCustomerObj);
+		Meteor.call('buildCustomerObj', customer, (err, result) => {
+			if (err) {
+				console.log(err);
+			}else{
+				console.log(result);
+				CustomersCollection.insert(result);
+			}
+		});
 	},
 
 	updateCustomer(customer) {
@@ -77,7 +83,7 @@ Meteor.methods({
 			if (err) {
 				console.log(err);
 			}else{				
-				// console.log(result);
+				console.log(result);
 				CustomersCollection.update({_id: result.id}, 
 					{
 						$set: {

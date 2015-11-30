@@ -1,6 +1,6 @@
 Customer = React.createClass({
 
-	mixins: [ReactMeteorData, ValidateCustomerMixin],
+	mixins: [ReactMeteorData, ValidateFieldsMixin],
 	
 	getMeteorData() {
 		let customerId = FlowRouter.current().params.customerId;		
@@ -23,7 +23,7 @@ Customer = React.createClass({
 	updateCustomer(e) {
 		let customerId = FlowRouter.current().params.customerId;
 		console.log('update customer: '+customerId);
-		const returnCustomerObj = this.validateCustomer(this.refs, customerId);
+		const returnCustomerObj = this.validateFields(this.refs, customerId);
 		console.log(returnCustomerObj)
 		if (returnCustomerObj.errors) {
 			this.setState({errorObj: {heading: 'Update form errors', message: this.errors}});

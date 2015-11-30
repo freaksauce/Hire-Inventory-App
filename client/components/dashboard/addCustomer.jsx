@@ -1,6 +1,6 @@
 AddCustomer = React.createClass({
 	
-	mixins: [ValidateCustomerMixin],
+	mixins: [ValidateFieldsMixin],
 
 	getInitialState() {
 		return {
@@ -19,7 +19,7 @@ AddCustomer = React.createClass({
 	addCustomer(e) {
 		e.preventDefault();
 		console.log('add customer');
-		const returnCustomerObj = this.validateCustomer(this.refs);
+		const returnCustomerObj = this.validateFields(this.refs);
 		
 		if (returnCustomerObj.errors) {
 			this.setState({errorObj: {heading: 'Add form errors', message: this.errors}});
@@ -59,13 +59,13 @@ AddCustomer = React.createClass({
 						<input ref="ref_customer_email" type="text" name="customer-email" required/>
 					</div>
 					<div className="field">
-						<label>Customer Address</label>
-						<textarea ref="ref_customer_address" name="customer-address"></textarea>
-					</div>
-					<div className="field">
 						<label>Customer Phone number</label>
 						<input ref="ref_customer_phone" type="text" name="customer-phone"/>
 					</div>
+					<div className="field">
+						<label>Customer Address</label>
+						<textarea ref="ref_customer_address" name="customer-address"></textarea>
+					</div>					
 					
 					<button className="ui button" type="submit">Add</button>
 				</form>
